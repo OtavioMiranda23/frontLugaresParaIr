@@ -6,11 +6,12 @@ import { Lugar } from '../../../models/lugar';
 import { Tag } from '../../../models/tag';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -36,10 +37,6 @@ export class HomeComponent implements OnInit {
     this.tags$ = this.http.get<Tag[]>(`${this.url}/tags`);
   }
 
-  getStars(lengthStar: number) {
-    return Array.from({ length: lengthStar }, (v, i) => i);
-  }
-
   createTag() {
     if (!this.tagName) return;
     const createTag: { name: string } = {
@@ -59,7 +56,4 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  goToDetail(id: number) {
-    this.router.navigate(['/detail', id]);
-  }
 }

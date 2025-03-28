@@ -13,6 +13,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   styleUrl: './card-detail.component.css'
 })
 export class CardDetailComponent implements OnInit {
+  
   http = inject(HttpClient);
   url = 'http://localhost:5030/api';
   lugar$?: Observable<Lugar>;

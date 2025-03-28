@@ -1,1 +1,24 @@
-<p>card works!</p>
+<div class="card" >
+    <div>
+        <span *ngIf="lugar?.hasVisited; else elseBlock">Visitado</span>
+        <ng-template #elseBlock>Não Visitado</ng-template>
+    </div>
+    <div class="top">
+        <span class="title">{{ lugar?.name }}</span>
+        <div class="stars" >
+            <span *ngFor="let star of getStars(lugar?.avaliation ?? 0)">{{ star }}</span>
+
+        </div>
+    </div>
+
+    <div class="middle">
+        <span>Zona {{ lugar?.cityZoneDetails?.cityZone }}</span>
+    </div>
+
+    <div class="tags-wrapper">
+        <div  *ngFor="let tag of lugar?.tagDetails" class="tag">
+            <span (click)="goToDetail(tag.id)">{{ tag.name }}</span>
+        </div>
+    </div>
+
+</div>
