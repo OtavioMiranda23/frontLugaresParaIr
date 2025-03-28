@@ -1,4 +1,6 @@
-<app-card *ngFor="let lugar of lugares$ | async" [lugar]="lugar"></app-card>
+<div class="card-wrapper">
+    <app-card *ngFor="let lugar of lugares$ | async" [lugar]="lugar"></app-card>
+</div>
 
 <div>
     <input type="text"[(ngModel)]="tagName">

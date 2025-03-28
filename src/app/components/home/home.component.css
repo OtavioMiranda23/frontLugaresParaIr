@@ -1,19 +1,5 @@
-.card {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid green;
-}
-
-.top {
-    display: flex;
-    flex-direction: column;
-}
-
-.tags-wrapper {
+.card-wrapper {
     display: flex;
     flex-wrap: wrap;
-}
-
-.stars {
-    display: flex;
+    margin: auto 0;
 }

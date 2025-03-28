@@ -1,19 +1,101 @@
 .card {
     display: flex;
     flex-direction: column;
-    border: 2px solid green;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 16px;
+    background: white;
+    width: 250px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    position: relative;
 }
 
-.top {
+/* Estilo do título */
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* Estilo das estrelas */
+.stars {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
 }
 
+/* Estilo do botão Edit */
+.edit-btn {
+    position: absolute;
+    top: 8px;
+    right: 35px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Botão de Fechar */
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #E24A4A;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilização da Badge "Visited" */
+.visited-badge {
+    background-color: #8FCB81;
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    font-size: 12px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilização da Zona */
+.middle {
+    background: white;
+    padding: 6px 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* Estilização das tags */
 .tags-wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
 }
 
-.stars {
-    display: flex;
+.tag {
+    background-color: #8FCB81;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
 }
