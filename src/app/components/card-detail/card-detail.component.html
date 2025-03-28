@@ -1,0 +1,31 @@
+<div  class="card" >
+    <div>
+        <span *ngIf="(lugar$ | async)?.hasVisited; else elseBlock">Visitado</span>
+        <ng-template #elseBlock>Não Visitado</ng-template>
+    </div>
+    <div class="top">
+        <span class="title">{{ (lugar$ | async)?.name }}</span>
+        <div class="stars" >
+            <span *ngFor="let star of getStars((lugar$ | async)?.avaliation ?? 0)">{{ star }}</span>
+
+        </div>
+    </div>
+
+    <ul class="middle">
+        <li *ngIf="(lugar$ | async)?.address">{{ (lugar$ | async)?.address }} <span *ngIf="(lugar$ | async)?.number">, nº {{ (lugar$ | async)?.number }}.</span></li>
+        <li *ngIf="(lugar$ | async)?.cep">{{ (lugar$ | async)?.cep }}</li>
+        <li>Zona {{ (lugar$ | async)?.cityZoneDetails?.cityZone }}</li>
+    </ul>
+    <button>Ver localização</button>
+
+    <div class="tags-wrapper">
+        <div  *ngFor="let tag of (lugar$ | async)?.tagDetails" class="tag">
+            <span>{{ tag.name }}</span>
+        </div>
+    </div>
+
+    <div *ngIf="(lugar$ | async)?.observation">
+        <p>{{ (lugar$ | async)?.observation }}</p>
+    </div>
+
+</div>
