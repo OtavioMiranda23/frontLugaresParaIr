@@ -1,0 +1,104 @@
+<div class="card" *ngIf="data">
+    <form (ngSubmit)="updateLugar()">
+      <div>
+        <label>
+          <input 
+            type="radio"
+            name="visitado"
+            [value]="true"
+            [(ngModel)]="data.hasVisited"
+            name="hasVisited"
+          />
+          Visitado
+        </label>
+      
+        <label>
+          <input 
+            type="radio"
+            name="visitado"
+            [value]="false"
+            [(ngModel)]="data.hasVisited"
+            name="hasVisited"
+          />
+          Não Visitado
+        </label>
+      </div>
+      
+  
+      <div class="top">
+        <input
+          type="text"
+          class="title"
+          [(ngModel)]="data.name"
+          name="name"
+          placeholder="Nome"
+        />
+        <div class="stars">
+          <input
+            type="number"
+            [(ngModel)]="data.avaliation"
+            name="avaliation"
+            placeholder="Avaliação"
+            min="0"
+            max="5"
+          />
+        </div>
+      </div>
+  
+      <ul class="middle">
+        <li>
+            <label for=""> Endereço
+                <input
+                  type="text"
+                  [(ngModel)]="data.address"
+                  name="address"
+                  placeholder="Endereço"
+                />
+
+            </label>
+            <label for="">Número
+                <input
+                  type="number"
+                  [(ngModel)]="data.number"
+                  name="number"
+                  placeholder="Número"
+                />
+
+            </label>
+        </li>
+        <li>
+            <label for="">Cep
+                <input
+                  type="text"
+                  [(ngModel)]="data.cep"
+                  name="cep"
+                  placeholder="CEP"
+                />
+
+            </label>
+        </li>
+        <li>
+          Zona
+          <select [(ngModel)]="data.cityZoneDetails.cityZoneId" name="zone">
+            <option [value]=0>Norte</option>
+            <option [value]=1>Sul</option>
+            <option [value]=2>Leste</option>
+            <option [value]=3>Oeste</option>
+            <option [value]=4>Centro</option>
+          </select>
+
+        </li>
+      </ul>
+  
+      <div>
+        <textarea
+          [(ngModel)]="data.observation"
+          name="observation"
+          placeholder="Observações"
+        >{{ data.observation }}</textarea>
+      </div>
+  
+      <button type="submit">Salvar alterações</button>
+    </form>
+  </div>
+  

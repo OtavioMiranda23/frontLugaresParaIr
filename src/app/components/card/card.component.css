@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid #000;
+    border: 2px solid #cbcbcb;
     border-radius: 12px;
     padding: 16px;
     background: white;
@@ -10,6 +10,13 @@
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
     font-family: 'Arial', sans-serif;
     position: relative;
+    min-height: 200px;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* Estilo do título */
@@ -22,7 +29,8 @@
 /* Estilo das estrelas */
 .stars {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    justify-content: flex-start;
     gap: 3px;
 }
 
@@ -63,8 +71,8 @@
     padding: 10px;
     border-radius: 50%;
     position: absolute;
-    top: 30px;
-    right: 10px;
+    top: 4px;
+    right: 4px;
     font-size: 12px;
     text-align: center;
     width: 50px;
@@ -74,11 +82,19 @@
     justify-content: center;
 }
 
+.visited-badge.not  {
+    background-color: #ff6451;
+}
+
 /* Estilização da Zona */
 .middle {
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+    align-self: baseline;
     background: white;
     padding: 6px 12px;
-    border: 2px solid black;
+    border: 1px solid #cbcbcb;
     border-radius: 8px;
     margin: 10px 0;
 }
@@ -99,3 +115,14 @@
     font-size: 12px;
     cursor: pointer;
 }
+
+.edit-link {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  

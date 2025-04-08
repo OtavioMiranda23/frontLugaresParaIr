@@ -5,7 +5,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card',
-  imports: [AsyncPipe, CommonModule],
+  imports: [ CommonModule],
   standalone: true,
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
@@ -21,5 +21,9 @@ export class CardComponent {
   }
   goToDetail(id: number) {
     this.router.navigate(['/detail', id]);
+  }
+
+  goToUpdate(id: number|undefined) {
+    this.router.navigate(['/update', id]);
   }
 }
