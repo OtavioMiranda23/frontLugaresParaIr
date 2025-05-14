@@ -28,6 +28,6 @@ export type Lugar = {
     hasVisited?: boolean,
     avaliation?: number,
     observation?: string,
-    tagDetails?: Tag[]
+    tagsIds?: number[]
 
   }

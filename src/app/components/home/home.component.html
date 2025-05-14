@@ -1,14 +1,3 @@
 <div class="card-wrapper">
-    <app-card *ngFor="let lugar of lugares$ | async" [lugar]="lugar"></app-card>
-</div>
-
-<div>
-    <input type="text"[(ngModel)]="tagName">
-    <button (click)="createTag()">Criar</button>
-</div>
-
-<ul *ngFor="let tag of tags$ | async">
-      <button (click)="deleteTag(tag.id.toString())">Deletar</button>
-      <li>{{ tag.name }}</li>    
-</ul>
-  
+    <app-card *ngFor="let lugar of lugares$ | async" [lugar]="lugar" [tags]="tags"></app-card>
+</div>  

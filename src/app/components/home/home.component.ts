@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   title = 'front_lugares';
   http = inject(HttpClient);
   url = 'http://localhost:5030/api';
-  tags$?: Observable<Tag[]>;
+  tags = [] as Tag[];
   lugares$?: Observable<Lugar[]>;
   tagName = "";
   constructor(private router: Router) {
@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLugares();
+    this.getTags();
   }
   
   getLugares() {
@@ -34,7 +35,12 @@ export class HomeComponent implements OnInit {
   }
 
   getTags() {
-    this.tags$ = this.http.get<Tag[]>(`${this.url}/tags`);
+    this.http.get<Tag[]>(`${this.url}/tags`)
+      .subscribe(tags => {
+        console.log(tags);
+        
+        this.tags = tags;
+      });
   }
 
   createTag() {

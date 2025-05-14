@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-card-update',
   standalone: true,
-  imports: [AsyncPipe, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './card-update.component.html',
   styleUrl: './card-update.component.css'
 })
@@ -36,7 +36,7 @@ export class CardUpdateComponent implements OnInit {
   
 
   updateLugar() {
-    this.http.patch<LugarUpdate>(`${this.url}/lugares?id=${this.id}`, this.data)
+    this.http.put<LugarUpdate>(`${this.url}/lugares/${this.id}`, this.data)
       .subscribe(updated => {
         console.log('Atualizado com sucesso!', updated);
       });
