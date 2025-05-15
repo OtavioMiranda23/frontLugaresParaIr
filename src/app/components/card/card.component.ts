@@ -21,12 +21,12 @@ export class CardComponent {
   tagName = "";
   http = inject(HttpClient);
   url = 'http://localhost:5030/api';
+  isCreateTagOpen = false;
   constructor(private router: Router) {
   }
   ngOnInit() {
     const currentTags = this.lugar?.tagDetails?.map(tag => tag.name);
-      this.tags = this.tags?.filter(tag => !currentTags?.includes(tag.name));
-      console.log(this.tags);
+    this.tags = this.tags?.filter(tag => !currentTags?.includes(tag.name));
   }
 
   getStars(lengthStar: number) {
@@ -39,9 +39,11 @@ export class CardComponent {
   goToUpdate(id: number|undefined) {
     this.router.navigate(['/update', id]);
   }
-
+  //TODO: TAGS PRECISAM SER ATUALIZADAS EM TODA A PAGINA
   getTags() {
-    this.tags$ = this.http.get<Tag[]>(`${this.url}/tags`);
+    this.http.get<Tag[]>(`${this.url}/tags`).subscribe(tags => {
+      this.tags = tags;
+    })
   }
   getLugarById() {
     this.http.get<Lugar>(`${this.url}/lugares/${this.lugar?.id}`)
@@ -49,8 +51,14 @@ export class CardComponent {
       this.lugar = lugarUpdated;
     })
   }
-  updateTagOfLugar(data: LugarUpdate) {
-    console.log(data);
+  updateTagOfLugar(idTag: number[]) {
+    let data = {} as LugarUpdate;
+    const currentTagIds = this.lugar?.tagDetails?.map(tag => tag.id);
+    if (!currentTagIds || !currentTagIds.length) {
+      data.tagsIds = idTag;
+    } else {
+      data["tagsIds"] = [...currentTagIds, ...idTag];
+    }
     
     this.http.put<LugarUpdate>(`${this.url}/lugares/${this.lugar?.id}`, data)
     .subscribe(updated => {
@@ -72,16 +80,33 @@ export class CardComponent {
       } else {
         data.tagsIds = [...currentTagIds, createdTag.id]
       }      
-      this.updateTagOfLugar(data);
+      this.updateTagOfLugar(data.tagsIds);
+      this.getTags();
       this.tagName = ""; 
     });
   }
 
-  deleteTag(id: number) {
-    this.http.delete<void>(`${this.url}/tags/${id}`)
+  removeTagFromCard(idTag: number) {
+    let data = {} as LugarUpdate;
+    const currentTagIds = this.lugar?.tagDetails?.map(tag => tag.id);
+    if (!currentTagIds || !currentTagIds.length) {
+      alert("Houve um problema");
+      return;
+    }
+    const restTags = currentTagIds.filter(tag => tag != idTag);
+    data["tagsIds"] = [...restTags];
+    this.http.put<LugarUpdate>(`${this.url}/lugares/${this.lugar?.id}`, data)
       .subscribe(_ => {
         this.getLugarById();
       })
   }
-  
+
+  openCreateTag() {
+    this.isCreateTagOpen = !this.isCreateTagOpen;
+  }
+
+  handleTagChange(tagEvent: Event) {
+    const selectElement = tagEvent.target as HTMLSelectElement; 
+    this.updateTagOfLugar([parseInt(selectElement.value)]);
+  }
 }

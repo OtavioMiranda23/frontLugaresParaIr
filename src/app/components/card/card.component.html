@@ -27,17 +27,25 @@
         <span>Zona {{ lugar?.cityZoneDetails?.cityZone }}</span>
     </div>
 
-    <div class="tags-wrapper">
-        <div  *ngFor="let tag of lugar?.tagDetails" class="tag">
-            <span (click)="deleteTag(tag.id)">{{ tag.name }}</span>
+    <div >
+        <div class="tags-wrapper">
+            <div  *ngFor="let tag of lugar?.tagDetails" class="tag">
+                <span (click)="removeTagFromCard(tag.id)">{{ tag.name }}</span>
+            </div>
         </div>
-        <div>
+        <button (click)="openCreateTag()">{{ isCreateTagOpen ? "-" : "+" }}</button>
+        <div *ngIf="isCreateTagOpen">
             <input type="text"[(ngModel)]="tagName">
             <button (click)="createTag()">Criar</button>
         </div>
         <div>
-            <select  name="" id="">
-                <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+            <select (change)="handleTagChange($event)"  name="" id="">
+                <option 
+                    *ngFor="let tag of tags" 
+                    [value]="tag.id"
+                    >
+                    {{ tag.name }}
+                </option>
             </select>
         </div>
     </div>

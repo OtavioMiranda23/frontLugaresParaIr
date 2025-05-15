@@ -36,9 +36,7 @@ export class HomeComponent implements OnInit {
 
   getTags() {
     this.http.get<Tag[]>(`${this.url}/tags`)
-      .subscribe(tags => {
-        console.log(tags);
-        
+      .subscribe(tags => {       
         this.tags = tags;
       });
   }
